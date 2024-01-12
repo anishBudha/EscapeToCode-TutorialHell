@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Tasks Tracker</title>
+  </head>
+  <body>
+    <div id="title">
+      <h1>ANISH TRACKS</h1>
+      <button class="add-task-btn">ADD</button>
+    </div>
+    <div class="popup">
+      <form id="popup-form">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="form-title" />
+        </div>
+        <div class="form-group">
+          <label for="due-date">Due Date:</label>
+          <input type="datetime-local" id="due-date" />
+        </div>
+        <div class="form-group">
+          <label for="url">URL:</label>
+          <input type="url" id="url" />
+        </div>
+        <div class="form-group">
+          <label for="note">Note:</label>
+          <input type="text" id="note" />
+        </div>
+        <div class="form-group">
+          <label for="image">image:</label>
+          <input type="file" id="image" accept="image" />
+        </div>
+        <input type="submit" class="submit" />
+      </form>
+    </div>
+    <div id="card-section">
+      <div class="card">
+        <img src="/image.png" alt="image" />
+        <div class="card-txt-content">
+          <p class="card-title">A Task</p>
+          <p class="card-due-date">Due Date</p>
+          <p class="card-note">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias,
+            nam!
+          </p>
+          <button class="card-open-btn">OPEN</button>
+          <button class="card-close-btn">CLOSE</button>
+        </div>
+      </div>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+#title {
+  position: relative;
+  /* border: solid; */
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#title h1 {
+  font-size: 3rem;
+}
+
+.add-task-btn {
+  cursor: pointer;
+  padding: 10px 100px;
+  background-color: transparent;
+  border: solid 2px black;
+  font-weight: 600;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.add-task-btn:hover {
+  background-color: black;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.popup {
+  visibility: hidden;
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: solid 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#popup-form {
+  width: fit-content;
+  height: fit-content;
+  border: solid 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: white;
+}
+
+#card-section {
+  /* border: solid; */
+  margin: 20px 40px;
+}
+
+.card {
+  border: solid;
+  width: 300px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-txt-content {
+  margin: 5px 10px 10px;
+}
