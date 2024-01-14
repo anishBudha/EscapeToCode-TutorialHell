@@ -49,21 +49,10 @@ class UI {
     const card_section = document.querySelector("#card-section");
     const card = document.createElement("div");
     card.classList.add("card");
-
-    const imageElement = document.createElement("img");
-    if (task.image) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        imageElement.src = e.target.result;
-      };
-      reader.readAsDataURL(task.image);
-    } else {
-      imageElement.src = "/image.png";
-    }
-
-    card.appendChild(imageElement);
-
+    const reader = new FileReader();
+    var uploaded_img = reader.result;
     card.innerHTML = `
+        <img src="${uploaded_img}" alt="image" /> 
         <div class="card-txt-content">
           <p class="card-title">${task.title}</p>
           <p class="card-due-date">${task.due_date}</p>
@@ -73,6 +62,7 @@ class UI {
           <button class="card-open-btn" hre>OPEN</button>
           <button class="card-close-btn">CLOSE</button>
     `;
+    reader.readAsDataURL(this.files[0]);
     card_section.appendChild(card);
   }
 }
@@ -86,11 +76,7 @@ form.addEventListener("submit", (e) => {
   const due_date = document.querySelector("#due-date").value;
   const url = document.querySelector("#url").value;
   const note = document.querySelector("#note").value;
-  const imageInput = document.querySelector("#image");
-  const image =
-    imageInput.files && imageInput.files.length > 0
-      ? imageInput.files[0]
-      : null;
+  const image = document.querySelector("#image");
 
   const task = new Tasks(title, due_date, url, note, image);
   console.log(task);
