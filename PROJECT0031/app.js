@@ -26,43 +26,40 @@ class Tasks {
 //UI Class: Handle UI Tasks
 class UI {
   static displayTask() {
-    const StoredTask = [
+    const StoredTasks = [
       {
         title: "Title 1",
         due_date: "2023-10-9",
         url: "google.com",
         note: "lorem lorem lorem lorem",
-        image:
-          "C:/Users/anish/OneDrive/Pictures/profile_pics/1684246179680.jpg",
+        image: "./image.png",
       },
       {
         title: "Title 2",
         due_date: "2023-11-9",
         url: "google1.com",
         note: "lorem lorem lorem lorem",
-        image:
-          "C:/Users/anish/OneDrive/Pictures/profile_pics/1684246179680.jpg",
+        image: "./image.png",
       },
     ];
+    const tasks = StoredTasks;
+    tasks.forEach((task) => UI.addTask(task));
   }
   static addTask(task) {
     const card_section = document.querySelector("#card-section");
     const card = document.createElement("div");
     card.classList.add("card");
-    const reader = new FileReader();
-    var uploaded_img = reader.result;
     card.innerHTML = `
-        <img src="${uploaded_img}" alt="image" /> 
-        <div class="card-txt-content">
-          <p class="card-title">${task.title}</p>
-          <p class="card-due-date">${task.due_date}</p>
-          <p class="card-note">
-            ${task.note}
-          </p>
-          <button class="card-open-btn" hre>OPEN</button>
-          <button class="card-close-btn">CLOSE</button>
-    `;
-    reader.readAsDataURL(this.files[0]);
+          <img src="${task.image}" alt="image" /> 
+          <div class="card-txt-content">
+            <p class="card-title">${task.title}</p>
+            <p class="card-due-date">${task.due_date}</p>
+            <p class="card-note">
+              ${task.note}
+            </p>
+            <button class="card-open-btn" hre>OPEN</button>
+            <button class="card-close-btn">CLOSE</button>
+      `;
     card_section.appendChild(card);
   }
 }
@@ -70,16 +67,19 @@ class UI {
 // Store Class: Handles Storage
 
 //Event: Display Book
+document.addEventListener("DOMContentLoaded", UI.displayTask);
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const title = document.querySelector("#form-title").value;
   const due_date = document.querySelector("#due-date").value;
   const url = document.querySelector("#url").value;
   const note = document.querySelector("#note").value;
-  const image = document.querySelector("#image");
+  const imageURL = document.querySelector("#image");
+  const image = URL.createObjectURL(imageURL.files[0]);
 
   const task = new Tasks(title, due_date, url, note, image);
   console.log(task);
+  console.log(image);
 
   UI.addTask(task);
 });
