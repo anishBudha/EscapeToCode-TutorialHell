@@ -30,7 +30,7 @@ class UI {
       {
         title: "Title 1",
         due_date: "2023-10-9",
-        url: "google.com",
+        url: "http://google.com",
         note: "lorem lorem lorem lorem",
         image: "./image.png",
       },
@@ -57,10 +57,31 @@ class UI {
             <p class="card-note">
               ${task.note}
             </p>
+            <p class="card-url">
+              ${task.url}
+            </p>
             <button class="card-open-btn" hre>OPEN</button>
             <button class="card-close-btn">CLOSE</button>
       `;
     card_section.appendChild(card);
+  }
+
+  static eventTask(el) {
+    if (el.classList.contains("card-close-btn")) {
+      el.parentElement.parentElement.remove();
+    } else if (el.classList.contains("card-open-btn")) {
+      const url = el.parentElement.querySelector(".card-url").textContent;
+      console.log(url);
+      window.open(url, "_blank").focus();
+    }
+  }
+
+  static clearFields() {
+    document.querySelector("#form-title").value = "";
+    document.querySelector("#due-date").value = "";
+    document.querySelector("#url").value = "";
+    document.querySelector("#note").value = "";
+    document.querySelector("#image").value = "";
   }
 }
 
@@ -80,7 +101,19 @@ form.addEventListener("submit", (e) => {
   const task = new Tasks(title, due_date, url, note, image);
   console.log(task);
   console.log(image);
+  // console.log(url);
 
   UI.addTask(task);
+
+  //clear fields
+  UI.clearFields();
+
+  // close popup
+  popup();
 });
-// Event: Remove book
+// Event: Remove task
+document.querySelector("#card-section").addEventListener("click", (e) => {
+  UI.eventTask(e.target);
+});
+
+//Event : open the link
