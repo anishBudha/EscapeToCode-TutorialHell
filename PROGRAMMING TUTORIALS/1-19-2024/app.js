@@ -52,3 +52,20 @@ function collectThings(x, ...y) {
 collectThings(1, 2, 3, 4, 5, 6, 7, 8, 9); // y will accept the rest of the arguments as an array
 
 // arrow function | fat arrow syntax
+
+const printName = (x) => {
+  console.log(x);
+};
+
+printName("Anish");
+
+// nested functions
+function outer() {
+  console.log("Outer Function");
+  function inner() {
+    console.log("Inner Function");
+  }
+  inner(); // must be invoked or called inside
+}
+
+outer();
