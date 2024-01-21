@@ -26,23 +26,7 @@ class Tasks {
 //UI Class: Handle UI Tasks
 class UI {
   static displayTask() {
-    const StoredTasks = [
-      {
-        title: "Title 1",
-        due_date: "2024-10-9",
-        url: "http://google.com",
-        note: "lorem lorem lorem lorem",
-        image: "./image.png",
-      },
-      {
-        title: "Title 2",
-        due_date: "2024-01-9",
-        url: "google1.com",
-        note: "lorem lorem lorem lorem",
-        image: "./image.png",
-      },
-    ];
-    const tasks = StoredTasks;
+    const tasks = Store.getTasks();
     tasks.forEach((task) => UI.addTask(task));
   }
   static addTask(task) {
@@ -112,6 +96,9 @@ class UI {
   static eventTask(el) {
     if (el.classList.contains("card-close-btn")) {
       el.parentElement.parentElement.remove();
+      Store.removeTask(
+        el.parentElement.parentElement.querySelector(".card-title").textContent
+      );
     } else if (el.classList.contains("card-open-btn")) {
       const url =
         el.parentElement.parentElement.querySelector(".card-url").textContent;
@@ -130,6 +117,37 @@ class UI {
 }
 
 // Store Class: Handles Storage
+class Store {
+  static getTasks() {
+    let tasks;
+    if (localStorage.getItem("tasks") == null) {
+      tasks = [];
+    } else {
+      tasks = JSON.parse(localStorage.getItem("tasks"));
+    }
+    return tasks;
+  }
+
+  static addTaskStore(task) {
+    const tasks = Store.getTasks();
+
+    tasks.push(task);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
+  static removeTask(title) {
+    const tasks = Store.getTasks();
+
+    tasks.forEach((task, index) => {
+      if (task.title == title) {
+        tasks.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+}
 
 //Event: Display Book
 document.addEventListener("DOMContentLoaded", UI.displayTask);
@@ -142,18 +160,24 @@ form.addEventListener("submit", (e) => {
   const imageURL = document.querySelector("#image");
   const image = URL.createObjectURL(imageURL.files[0]);
 
-  const task = new Tasks(title, due_date, url, note, image);
-  console.log(task);
-  console.log(image);
-  // console.log(url);
+  if (title == "" || due_date == "" || url == "" || note == "")
+    alert("Please fill in the required fields!");
+  else {
+    const task = new Tasks(title, due_date, url, note, image);
+    console.log(task);
+    console.log(image);
+    // console.log(url);
 
-  UI.addTask(task);
+    UI.addTask(task);
 
-  //clear fields
-  UI.clearFields();
+    // Add task to store
+    Store.addTaskStore(task);
+    //clear fields
+    UI.clearFields();
 
-  // close popup
-  popup();
+    // close popup
+    popup();
+  }
 });
 // Event: Remove task
 document.querySelector("#card-section").addEventListener("click", (e) => {
