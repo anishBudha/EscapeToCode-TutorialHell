@@ -33,3 +33,6 @@ console.log(clone_user1.first_name);
 clone_user1.first_name = "changed";
 console.log(clone_user1.first_name);
 console.log(user1.first_name);
+
+let adate = new Date("Jan 20, 2024 10:30:00").getDate();
+console.log(adate);
