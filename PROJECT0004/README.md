@@ -4,10 +4,13 @@ Tutorial Link: https://www.youtube.com/watch?v=bZXjHauDNcg&ab_channel=ChrisBlake
 Author: https://www.youtube.com/@ChrisBlakely
 
 Features:
--
--
--
--
--
+- jsx
+- react components
+- react state
+- react hooks
+- react props
+- map function
+- useEffect
+- fetching api
 
 ```
