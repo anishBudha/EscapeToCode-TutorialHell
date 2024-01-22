@@ -11,6 +11,6 @@ Features:
 - react props
 - map function
 - useEffect
-- fetching api
+- api calls and fetching api
 
 ```
