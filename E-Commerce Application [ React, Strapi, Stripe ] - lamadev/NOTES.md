@@ -13,4 +13,13 @@ import {
 }
 in the docs
 - Copy the router provider and create the router (inside we will add the paths)
+
+- handling the navbar and footer using the react-router-dom "Outlet" (so not to code in every pages)
+
+- installed sass: -> npm add sass
+- installed mui: -> npm install @mui/material @emotion/react @emotion/styled
+- installed mui library: -> npm add @mui/icons-material
+
 ```
+
+> https://youtu.be/BCkWFblNLKU?t=1026
