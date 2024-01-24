@@ -10,6 +10,9 @@ import Products from "./pages/Products/Products.jsx";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 
+//importing sass file
+import "./App.scss";
+
 // for navbar - outlet(which will render our pages) - footer
 const Layout = () => {
   return (
