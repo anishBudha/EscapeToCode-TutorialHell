@@ -8,8 +8,9 @@ import { useParams } from "react-router-dom";
 import List from "../../components/List/List";
 
 const Products = () => {
-  const catid = parseInt(useParams().id);
+  const catId = parseInt(useParams().id);
   const [maxPrice, setMaxPrice] = useState(1000);
+  const [sort, setSort] = useState(null);
 
   return (
     <div className="products">
@@ -45,21 +46,34 @@ const Products = () => {
         <div className="filterItem">
           <h2>Sort by</h2>
           <div className="inputItem">
-            <input type="radio" id="asc" value="asc" name="price" />
+            <input
+              type="radio"
+              id="asc"
+              value="asc"
+              name="price"
+              onChange={(e) => setSort("asc")}
+            />
             <label htmlFor="asc">Lowest to Highest</label>
           </div>
           <div className="inputItem">
-            <input type="radio" id="desc" value="desc" name="price" />
+            <input
+              type="radio"
+              id="desc"
+              value="desc"
+              name="price"
+              onChange={(e) => setSort("desc")}
+            />
             <label htmlFor="desc">Highest to Lowest</label>
           </div>
         </div>
       </div>
       <div className="right">
         <img
+          className="catImg"
           src="https://images.unsplash.com/photo-1542327534-59a1fe8daf73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MTA3OTh8MHwxfHNlYXJjaHwxMHx8Y2xvdGhpbmclMjBicmFuZHxlbnwwfHx8fDE3MDYzMDM4MDJ8MA&ixlib=rb-4.0.3&q=80&w=400"
           alt=""
         />
-        <List />
+        <List catId={catId} maxPrice={maxPrice} sort={sort} />
       </div>
     </div>
   );
